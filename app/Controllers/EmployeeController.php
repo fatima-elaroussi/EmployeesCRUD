@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Controllers;
 
 use App\Models\Employee;
@@ -19,5 +21,18 @@ class EmployeeController {
         header('Location: /');
     }
 
-    // Add methods for update and delete...
+    public function edit($id) {
+        $employee = $this->employeeModel->getById($id);
+        require_once '../resources/views/edit.php';
+    }
+
+    public function update($id, $data) {
+        $this->employeeModel->update($id, $data);
+        header('Location: /');
+    }
+
+    public function destroy($id) {
+        $this->employeeModel->delete($id);
+        header('Location: /');
+    }
 }
